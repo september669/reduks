@@ -156,7 +156,7 @@ abstract class BaseReduxViewModel<
         val isFirstDispatch = atomic(true)
 
         override fun dispatch(prevState: State, newState: State) {
-            if (newState != prevState || isFirstDispatch.value) {
+            if (newState !== prevState || isFirstDispatch.value) {
                 isFirstDispatch.value = false
                 sendState(newState)
             } else {

@@ -51,10 +51,6 @@ kotlin {
     val ios = listOf(iosX64(), iosArm64())
     configure(ios) {
         val main by compilations.getting
-        val interop by main.cinterops.creating{
-            defFile(project.file("src/nativeInterop/cinterop/interop.def"))
-        }
-
         binaries {
             framework {
                 baseName = "libName"
@@ -133,7 +129,7 @@ val (bintrayUser, bintrayPass, bintrayKey) = project.rootProject.file("publish.p
 }
 
 publishing {
-    repositories.maven("https://api.bintray.com/maven/september669/KmmAnkoLogger1/AnkoLogger/;publish=1;override=1") {
+    repositories.maven("https://api.bintray.com/maven/september669/reduks/Reduks/;publish=1;override=1") {
         name = "bintray"
 
         credentials {

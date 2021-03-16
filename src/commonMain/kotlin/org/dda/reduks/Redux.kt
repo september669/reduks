@@ -67,6 +67,10 @@ interface ReduceAction<State, ViewModel> : ReduxAction {
 
 interface ReduxSideEffect : AnkoLogger
 
+interface ActiveSideEffect<State, ViewModel> : ReduxSideEffect{
+    fun onEffect(viewModel: ViewModel, state: State)
+}
+
 typealias ReduxReducer<State, Action> = (prevState: State, action: Action) -> State
 
 typealias ReduxEffector<State, SideEffect> = (state: State, effect: SideEffect) -> Unit
