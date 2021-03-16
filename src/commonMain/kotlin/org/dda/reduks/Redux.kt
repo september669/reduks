@@ -8,17 +8,20 @@ class ReduxStore<State : ReduxState, Action : ReduxAction, SideEffect : ReduxSid
     val dispatcher: Dispatcher<State>,
     val reducer: ReduxReducer<State, Action>,
     val sideEffect: ReduxEffector<State, SideEffect>
-): AnkoLogger {
+) : AnkoLogger {
 
     private val isBulkDispatching = true
 
     private var _state: State = initState
 
     @Suppress("MemberVisibilityCanBePrivate")
-    val state: State get() = _state
+    val state: State
+        get() = _state
 
     fun dispatch(vararg action: Action): State {
-        logDebug { "dispatch($action)" }
+        logDebug {
+            "dispatch(${action.joinToString(transform = { it.toLogString() })})"
+        }
         var newSate: State? = null
         val oldState = _state
         action.forEach { actionItem ->
@@ -38,7 +41,7 @@ class ReduxStore<State : ReduxState, Action : ReduxAction, SideEffect : ReduxSid
     }
 
     fun dispatchSideEffect(effect: SideEffect) {
-        logDebug { "dispatchSideEffect($effect)" }
+        logDebug { "dispatchSideEffect(${effect.toLogString()})" }
         sideEffect.invoke(state, effect)
     }
 }
@@ -59,15 +62,19 @@ interface ReduxState : AnkoLogger {
     fun toLogString(): String = toString()
 }
 
-interface ReduxAction : AnkoLogger
-
-interface ReduceAction<State, ViewModel> : ReduxAction {
-     fun reduce(state: State, viewModel: ViewModel): State
+interface ReduxAction : AnkoLogger {
+    fun toLogString(): String = toString()
 }
 
-interface ReduxSideEffect : AnkoLogger
+interface ReduceAction<State, ViewModel> : ReduxAction {
+    fun reduce(state: State, viewModel: ViewModel): State
+}
 
-interface ActiveSideEffect<State, ViewModel> : ReduxSideEffect{
+interface ReduxSideEffect : AnkoLogger {
+    fun toLogString(): String = toString()
+}
+
+interface ActiveSideEffect<State, ViewModel> : ReduxSideEffect {
     fun onEffect(viewModel: ViewModel, state: State)
 }
 
