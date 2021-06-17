@@ -1,8 +1,8 @@
 pluginManagement {
     repositories {
-        gradlePluginPortal()
         google()
         jcenter()
+        gradlePluginPortal()
         mavenCentral()
     }
     resolutionStrategy {
@@ -13,4 +13,6 @@ pluginManagement {
         }
     }
 }
+includeBuild("convention-plugins")
 rootProject.name = "Reduks"
+
