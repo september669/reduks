@@ -1,6 +1,3 @@
-import org.jetbrains.kotlin.konan.properties.loadProperties
-
-
 plugins {
     kotlin("multiplatform") version "1.4.30"
     id("convention.publication")
@@ -51,7 +48,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                api("org.dda.ankoLogger:AnkoLogger:0.2.4")
+                api("io.github.september669:AnkoLogger:0.2.5")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
                 implementation("org.jetbrains.kotlinx:atomicfu:0.15.1")
             }

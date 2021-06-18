@@ -75,7 +75,7 @@ publishing {
                 developer {
                     id.set("september669")
                     name.set("Denis Do")
-                    email.set("ekaterina.petrova@jetbrains.com")
+                    email.set("september669@gmail.com")
                 }
             }
             scm {
