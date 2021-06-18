@@ -11,7 +11,7 @@ val coroutinesVersion = "1.4.3-native-mt"
 object libVersion{
     private val major = 0
     private val minor = 1
-    private val patch = 4
+    private val patch = 5
     val num = 10_000 * major + 100 * minor + 1 * patch
     val text = "$major.$minor.$patch"
 }
