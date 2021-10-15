@@ -1,18 +1,25 @@
 plugins {
-    kotlin("multiplatform") version "1.5.10"
+    kotlin("multiplatform") version "1.5.31"// kotlin version
     id("convention.publication")
     id("com.android.library")
 }
 
-val kotlinVersion = "1.5.30"
 val coroutinesVersion = "1.5.2-native-mt"
 
 /*
     Publish to maven
     https://dev.to/kotlin/how-to-build-and-publish-a-kotlin-multiplatform-library-going-public-4a8k
-
     https://getstream.io/blog/publishing-libraries-to-mavencentral-2021/#your-first-release
 
+    Build and send
+    0.  ./gradlew clean
+    1.  ./gradlew publishAllPublicationsToSonatypeRepository
+
+    Confirm
+    1.  go to https://s01.oss.sonatype.org/#stagingRepositories
+    2.  Find your repository in the ‘Staging repositories’ section.
+    3.  Close it.
+    4.  🚀 Release it!
 
  */
 
@@ -42,7 +49,8 @@ kotlin {
     targets.all {
         compilations.all {
             kotlinOptions {
-                allWarningsAsErrors = true
+                //  -Werror
+                //allWarningsAsErrors = true
             }
         }
     }
@@ -56,7 +64,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                api("io.github.september669:AnkoLogger:0.2.5")
+                api("io.github.september669:AnkoLogger:0.2.6")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
                 implementation("org.jetbrains.kotlinx:atomicfu:0.16.3")
             }
@@ -78,6 +86,11 @@ kotlin {
         val iosMain by getting
         val iosTest by getting
     }
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
 }
 
 android {
