@@ -1,11 +1,20 @@
 plugins {
-    kotlin("multiplatform") version "1.4.30"
+    kotlin("multiplatform") version "1.5.10"
     id("convention.publication")
     id("com.android.library")
 }
 
-val kotlinVersion = "1.4.30"
-val coroutinesVersion = "1.4.3-native-mt"
+val kotlinVersion = "1.5.30"
+val coroutinesVersion = "1.5.2-native-mt"
+
+/*
+    Publish to maven
+    https://dev.to/kotlin/how-to-build-and-publish-a-kotlin-multiplatform-library-going-public-4a8k
+
+    https://getstream.io/blog/publishing-libraries-to-mavencentral-2021/#your-first-release
+
+
+ */
 
 
 object libVersion{
@@ -19,7 +28,6 @@ object libVersion{
 
 group = "io.github.september669"
 version = libVersion.text
-
 
 repositories {
     gradlePluginPortal() // To use 'maven-publish' and 'signing' plugins in our own plugin
@@ -50,7 +58,7 @@ kotlin {
             dependencies {
                 api("io.github.september669:AnkoLogger:0.2.5")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
-                implementation("org.jetbrains.kotlinx:atomicfu:0.15.1")
+                implementation("org.jetbrains.kotlinx:atomicfu:0.16.3")
             }
         }
         val commonTest by getting {
