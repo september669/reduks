@@ -11,12 +11,15 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation("io.github.september669:Reduks:0.1.5")
+                implementation("io.github.september669:Reduks:0.1.7")
             }
         }
     }
 }
 ```
+
+Version bumped up 0.1.6 compiled with Kotlin 1.5.31
+Version bumped up 0.1.7 compiled with Kotlin 1.6.10
 
 ### Using in ViewModels
 

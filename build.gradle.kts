@@ -1,10 +1,10 @@
 plugins {
-    kotlin("multiplatform") version "1.5.31"// kotlin version
+    kotlin("multiplatform") version "1.6.10"// kotlin version
     id("convention.publication")
     id("com.android.library")
 }
 
-val coroutinesVersion = "1.5.2-native-mt"
+val coroutinesVersion = "1.6.1-native-mt"
 
 /*
     Publish to maven
@@ -27,7 +27,7 @@ val coroutinesVersion = "1.5.2-native-mt"
 object libVersion{
     private val major = 0
     private val minor = 1
-    private val patch = 6
+    private val patch = 7
     val num = 10_000 * major + 100 * minor + 1 * patch
     val text = "$major.$minor.$patch"
 }
@@ -39,7 +39,6 @@ version = libVersion.text
 repositories {
     gradlePluginPortal() // To use 'maven-publish' and 'signing' plugins in our own plugin
     google()
-    jcenter()
     mavenCentral()
 }
 
@@ -64,7 +63,7 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                api("io.github.september669:AnkoLogger:0.2.6")
+                api("io.github.september669:AnkoLogger:0.2.8")
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
                 implementation("org.jetbrains.kotlinx:atomicfu:0.16.3")
             }
@@ -78,7 +77,7 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion")
-                implementation("androidx.lifecycle:lifecycle-viewmodel:2.3.1")
+                implementation("androidx.lifecycle:lifecycle-viewmodel:2.4.1")
             }
         }
         val androidTest by getting
