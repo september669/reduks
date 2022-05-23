@@ -20,6 +20,7 @@ kotlin {
 
 Version bumped up 0.1.6 compiled with Kotlin 1.5.31
 Version bumped up 0.1.7 compiled with Kotlin 1.6.10
+Version bumped up 0.1.8 compiled with Kotlin 1.6.10
 
 ### Using in ViewModels
 
